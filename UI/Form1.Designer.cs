@@ -145,9 +145,10 @@
             this.Controls.Add(this.metroSetPanel1);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(12, 90, 12, 12);
+            this.ShowBorder = false;
             this.ShowTitle = false;
             this.Style = MetroSet_UI.Design.Style.Dark;
-            this.Text = "METROSET UI";
+            this.Text = "Ducky IDE by NHTHEBEST";
             this.TextColor = System.Drawing.Color.White;
             this.ThemeName = "MetroDark";
             this.Load += new System.EventHandler(this.Form1_Load_1);

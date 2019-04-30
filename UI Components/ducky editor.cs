@@ -22,6 +22,8 @@ namespace UI_Components
             BackColor = Color.FromArgb(34, 34, 34);
             ForeColor = Color.FromArgb(204,204,204);
             KeyUp += keyPress;
+            KeyDown += keyDown;
+            ShortcutsEnabled = true;
             foreach (string tok in IntalTokens)
                 regex.Add(tok);
         }
@@ -39,6 +41,10 @@ namespace UI_Components
             }
         }
 
+        private void keyDown(object sender, KeyEventArgs e)
+        {
+
+        }
 
 
         private void keyPress(object sender, EventArgs e)
