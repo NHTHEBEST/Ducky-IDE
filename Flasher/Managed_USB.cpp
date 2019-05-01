@@ -4,6 +4,8 @@
 using namespace System;
 
 
+public delegate void CLRProgressDelegate(float progress);
+
 ref class Managed_USB
 {
 public:
@@ -21,6 +23,13 @@ public:
     {
         return (bool)unm_usb->cpp_flash_dev(program, size, (int)fastmode, timeout, (int)run);
     }
+
+	// event
+	static event CLRProgressDelegate^ ProgressChanged;
+	static void raiseProgressChangedEvent(float progress)
+	{
+		ProgressChanged(progress);
+	}
     
 private:
     void ShowDestruction()
@@ -31,3 +40,9 @@ private:
     }
     UnManaged_USB *unm_usb;
 };
+
+
+void flashevent(float value)
+{
+	Managed_USB::raiseProgressChangedEvent(value);
+}

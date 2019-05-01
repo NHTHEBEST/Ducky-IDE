@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Flasher\Flasher.vcxproj">
+      <Project>{d5f426cc-73bb-4a71-a1ca-9dbfdd2968cc}</Project>
+      <Name>Flasher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UI Components\UI Components.csproj">
       <Project>{30c950b1-263c-4c62-b357-da59cfc1381f}</Project>
       <Name>UI Components</Name>

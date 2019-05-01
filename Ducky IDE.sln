@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{692E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI Components", "UI Components\UI Components.csproj", "{30C950B1-263C-4C62-B357-DA59CFC1381F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Flasher", "Flasher\Flasher.vcxproj", "{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,16 @@ Global
 		{30C950B1-263C-4C62-B357-DA59CFC1381F}.Release|x64.Build.0 = Release|Any CPU
 		{30C950B1-263C-4C62-B357-DA59CFC1381F}.Release|x86.ActiveCfg = Release|Any CPU
 		{30C950B1-263C-4C62-B357-DA59CFC1381F}.Release|x86.Build.0 = Release|Any CPU
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Debug|x64.ActiveCfg = Debug|x64
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Debug|x64.Build.0 = Debug|x64
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Debug|x86.ActiveCfg = Debug|Win32
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Debug|x86.Build.0 = Debug|Win32
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Release|Any CPU.ActiveCfg = Release|Win32
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Release|x64.ActiveCfg = Release|x64
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Release|x64.Build.0 = Release|x64
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Release|x86.ActiveCfg = Release|Win32
+		{D5F426CC-73BB-4A71-A1CA-9DBFDD2968CC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

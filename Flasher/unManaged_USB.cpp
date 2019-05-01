@@ -130,6 +130,7 @@ static int parseRaw(unsigned char *datain, unsigned char *data_buffer, int *star
   return 0;
 }
 /******************************************************************************/
+extern void flashevent(float value);
 static void printProgress(float progress){
     // progres exeption
     progress+=0.01f;
@@ -138,5 +139,6 @@ static void printProgress(float progress){
     char c = '\r';
     if (p==100)c = '\n';
     printf("%3d%%%c", p, c);
-    return;
+    // rasing mcpp event
+	flashevent(progress);
 }

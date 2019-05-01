@@ -18,16 +18,19 @@ namespace UI
         public Form1()
         {
             InitializeComponent();
+            Micronucleus.Flasher.FlashUpdate += new Micronucleus.Flasher.FlashUpdateEventHandler(x);
         }
 
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
+            //Micronucleus.Flasher.
         }
 
-        private void MetroSetButton1_Click(object sender, EventArgs e)
+        void x(float x)
         {
-
+            MessageBox.Show(x.ToString());
         }
+
     }
 }
