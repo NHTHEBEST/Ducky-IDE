@@ -4,7 +4,8 @@
 using namespace System;
 
 
-public delegate void CLRProgressDelegate(float progress);
+public delegate void CLRProgressDelegate(float progress, int stage);
+public delegate void CLRTextDelegate(int code, int data1, int data2);
 
 ref class Managed_USB
 {
@@ -26,9 +27,14 @@ public:
 
 	// event
 	static event CLRProgressDelegate^ ProgressChanged;
-	static void raiseProgressChangedEvent(float progress)
+	static void raiseProgressChangedEvent(float progress, int stage)
 	{
-		ProgressChanged(progress);
+		ProgressChanged(progress, stage);
+	}
+	static event CLRTextDelegate^ TextUpdate;
+	static void raiseTextUpdateEvent(int code, int data1, int data2)
+	{
+		TextUpdate(code,data1,data2);
 	}
     
 private:
@@ -41,8 +47,13 @@ private:
     UnManaged_USB *unm_usb;
 };
 
-
-void flashevent(float value)
+//extern void Micronucleus::Flasher::onUpdate(float val);
+void flashevent(float value, int stage)
 {
-	Managed_USB::raiseProgressChangedEvent(value);
+	Managed_USB::raiseProgressChangedEvent(value, stage);
+	//Micronucleus::Flasher::onUpdate(value);
+}
+void mprintText(int code, int data1, int data2)
+{
+	Managed_USB::raiseTextUpdateEvent(code, data1, data2);
 }

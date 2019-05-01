@@ -33,6 +33,7 @@
             this.metroSetProgressBar1 = new MetroSet_UI.Controls.MetroSetProgressBar();
             this.metroSetPanel2 = new MetroSet_UI.Controls.MetroSetPanel();
             this.ducky_editor1 = new UI_Components.ducky_editor();
+            this.metroSetButton1 = new MetroSet_UI.Controls.MetroSetButton();
             this.metroSetPanel1.SuspendLayout();
             this.metroSetPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +68,7 @@
             this.metroSetPanel1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.metroSetPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.metroSetPanel1.BorderThickness = 1;
+            this.metroSetPanel1.Controls.Add(this.metroSetButton1);
             this.metroSetPanel1.Controls.Add(this.metroSetProgressBar1);
             this.metroSetPanel1.Controls.Add(this.metroSetPanel2);
             this.metroSetPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -135,6 +137,32 @@
             this.ducky_editor1.TabIndex = 2;
             this.ducky_editor1.Text = "";
             // 
+            // metroSetButton1
+            // 
+            this.metroSetButton1.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.metroSetButton1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.metroSetButton1.DisabledForeColor = System.Drawing.Color.Gray;
+            this.metroSetButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.metroSetButton1.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.metroSetButton1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.metroSetButton1.HoverTextColor = System.Drawing.Color.White;
+            this.metroSetButton1.Location = new System.Drawing.Point(611, 533);
+            this.metroSetButton1.Name = "metroSetButton1";
+            this.metroSetButton1.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.metroSetButton1.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.metroSetButton1.NormalTextColor = System.Drawing.Color.White;
+            this.metroSetButton1.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.metroSetButton1.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.metroSetButton1.PressTextColor = System.Drawing.Color.White;
+            this.metroSetButton1.Size = new System.Drawing.Size(75, 23);
+            this.metroSetButton1.Style = MetroSet_UI.Design.Style.Light;
+            this.metroSetButton1.StyleManager = null;
+            this.metroSetButton1.TabIndex = 5;
+            this.metroSetButton1.Text = "metroSetButton1";
+            this.metroSetButton1.ThemeAuthor = "Narwin";
+            this.metroSetButton1.ThemeName = "MetroLite";
+            this.metroSetButton1.Click += new System.EventHandler(this.MetroSetButton1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -165,6 +193,7 @@
         private UI_Components.ducky_editor ducky_editor1;
         private MetroSet_UI.Controls.MetroSetPanel metroSetPanel2;
         private MetroSet_UI.Controls.MetroSetProgressBar metroSetProgressBar1;
+        private MetroSet_UI.Controls.MetroSetButton metroSetButton1;
     }
 }
 
