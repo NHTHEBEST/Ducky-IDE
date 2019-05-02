@@ -43,7 +43,7 @@ namespace UI
         private void MetroSetButton1_Click(object sender, EventArgs e)
         {
             byte[] x = { 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0 };
-            MessageBox.Show(Micronucleus.Flasher.flash(x).ToString());
+            MessageBox.Show(Micronucleus.Flasher.Flash(x).ToString());
             MessageBox.Show(fl.ToArray().ToString());
         }
     }

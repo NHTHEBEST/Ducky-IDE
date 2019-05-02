@@ -1,11 +1,11 @@
 using System;
 using System.IO;
+using System.Text;
 using System.Runtime.InteropServices;
-
+using System.Collections.Generic;
 
 namespace Micronucleus
 {
-    
     public class Flasher
     {
         public delegate void FlashUpdateEventHandler(float value, int stage);
@@ -14,7 +14,86 @@ namespace Micronucleus
         public delegate void TextEventHandler(string text);
         public static event TextEventHandler Text;
 
-        unsafe static public bool flash(byte[] program, bool fastmode = false, int timeout = 10, bool run = false)
+        private static bool fm = false;
+        private static bool r = false;
+        private static int to = 10;
+
+        /// <summary>
+        /// FastMode Flash
+        /// </summary>
+        public static bool FastMode { get { return fm; } set { fm = value; } }// = false;
+        /// <summary>
+        /// Run After Flash
+        /// </summary>
+        public static bool Run { get { return r; } set { r = value; } }// = false;
+        /// <summary>
+        /// Device Search Timeout
+        /// </summary>
+        public static int TimeOut { get { return to; } set { to = value; } } //= 10;
+
+        /// <summary>
+        /// Flashes Device With Program
+        /// </summary>
+        /// <param name="program">Raw bytes to be flashed</param>
+        /// <returns>True on Succses & False on Fail</returns>
+        public static bool Flash(byte[] program)
+        {
+            return flash(program);
+        }
+        /// <summary>
+        /// Flashes Device With Program
+        /// </summary>
+        /// <param name="file">Program file to be flash can be raw intelhex or elf</param>
+        /// <returns>True on Succses & False on Fail</returns>
+        public static bool Flash(string file)
+        {
+            byte[] data = File.ReadAllBytes(file);
+            
+            if (data[1] == 'E' && data[2] == 'L' && data[3] == 'F')
+            {
+                // elf
+            }
+            else if (data[0] == ':')
+            {
+                // intel hex
+            }
+            return flash(data);
+        }
+
+        private static byte[] getFromElf(byte[] data)
+        {
+            return null;
+        }
+        private static byte[] getFromHex(byte[] data)
+        {
+            List<char> chars = new List<char>();
+            foreach (byte x in data)
+            {
+                chars.Add((char)x);
+            }
+            List<string> lines = new List<string>();
+            string line = "";
+            foreach (char x in chars.ToArray())
+            {
+                if (x == '\n')
+                {
+                    lines.Add(line);
+                    line = "";
+                }
+                else if (x == '\r')
+                {
+
+                }
+                else
+                {
+                    line = line + x;
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            return null;
+        }
+
+        unsafe static private bool flash(byte[] program)
         {
             Managed_USB musb = new Managed_USB();
 
@@ -23,7 +102,7 @@ namespace Micronucleus
 
             fixed (byte* x = &program[0])
             {
-                return musb.Flash(x, program.Length, fastmode, timeout, run);
+                return musb.Flash(x, program.Length, FastMode, TimeOut, Run);
             }
         }
 
