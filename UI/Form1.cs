@@ -20,31 +20,55 @@ namespace UI
             InitializeComponent();
             Micronucleus.Flasher.FlashUpdate += new Micronucleus.Flasher.FlashUpdateEventHandler(x);
             Micronucleus.Flasher.Text += new Micronucleus.Flasher.TextEventHandler(y);
+            metroSetLabel1.Text = "";
         }
 
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            fl = new List<float>();
+            //System.IO.File.WriteAllBytes(@"C:\Users\NHTHEBEST\Downloads\hex.bin", Micronucleus.Flasher.getFromHex(System.IO.File.ReadAllBytes(@"C:\Users\NHTHEBEST\Downloads\Wifi_pass.ino.hex")));
         }
-        List<float> fl;
         void x(float x, int stage)
         {
-            fl.Add(x);
+            if (stage == 0)
+                BeginInvoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    metroSetLabel1.Text = "Conecting";
+                });
+            else if (stage == 1)
+                BeginInvoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    metroSetLabel1.Text = "Erasing";
+                });
+            else if (stage == 2)
+                BeginInvoke((MethodInvoker)delegate {
+                    // Running on the UI thread
+                    metroSetLabel1.Text = "Flashing";
+                });
+            else
+                metroSetLabel1.Text = "";
             int y = (int)(x * 100f);
-            MessageBox.Show(y.ToString());
+            //MessageBox.Show(y.ToString());
             metroSetProgressBar1.Value = y;
         }
         void y(string text)
         {
-            MessageBox.Show(text);
+            //MessageBox.Show(text);
+            BeginInvoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                ducky_editor1.Text = ducky_editor1.Text + text;
+            });
+            
         }
 
+        void set (object x , string text)
+        { 
+}
+
         private void MetroSetButton1_Click(object sender, EventArgs e)
-        {
-            byte[] x = { 0, 0, 0, 0, 0, 0, 0, 0, 00, 0, 0, 0, 0, 0, 0, 0 };
-            MessageBox.Show(Micronucleus.Flasher.Flash(x).ToString());
-            MessageBox.Show(fl.ToArray().ToString());
+        { 
+            System.Threading.Thread t = new System.Threading.Thread(() => Micronucleus.Flasher.Flash(@"C:\Users\NHTHEBEST\Downloads\Wifi_pass.inos.hex").ToString());
+            t.Start();
         }
     }
 }

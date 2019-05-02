@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Micronucleus
 {
@@ -52,10 +53,12 @@ namespace Micronucleus
             if (data[1] == 'E' && data[2] == 'L' && data[3] == 'F')
             {
                 // elf
+                data = getFromElf(data);
             }
             else if (data[0] == ':')
             {
-                // intel hex
+                // hex
+                data = getFromHex(data);
             }
             return flash(data);
         }
@@ -64,7 +67,7 @@ namespace Micronucleus
         {
             return null;
         }
-        private static byte[] getFromHex(byte[] data)
+        public static byte[] getFromHex(byte[] data)
         {
             List<char> chars = new List<char>();
             foreach (byte x in data)
@@ -89,10 +92,30 @@ namespace Micronucleus
                     line = line + x;
                 }
             }
+            line = "";
             StringBuilder sb = new StringBuilder();
-            return null;
-        }
+            foreach (string l in lines)
+            {
+                string binvalue = "";
+                line = l.Substring(9);
+                char[] cha = line.ToCharArray();
 
+                if (cha.Length > 32)
+                {
+                    binvalue = new string(cha, 0, 32);
+                    sb.Append(binvalue);
+                }
+            }
+
+            return StringToByteArray(sb.ToString());
+        }
+        static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length)
+                             .Where(x => x % 2 == 0)
+                             .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                             .ToArray();
+        }
         unsafe static private bool flash(byte[] program)
         {
             Managed_USB musb = new Managed_USB();
