@@ -15,22 +15,22 @@ namespace Micronucleus
         public delegate void TextEventHandler(string text);
         public static event TextEventHandler Text;
 
-        private static bool fm = false;
-        private static bool r = false;
+        private static bool fm;
+        private static bool r;
         private static int to = 10;
 
         /// <summary>
         /// FastMode Flash
         /// </summary>
-        public static bool FastMode { get { return fm; } set { fm = value; } }// = false;
+        public static bool FastMode { get { return fm; } set { fm = value; } }
         /// <summary>
         /// Run After Flash
         /// </summary>
-        public static bool Run { get { return r; } set { r = value; } }// = false;
+        public static bool Run { get { return r; } set { r = value; } }
         /// <summary>
         /// Device Search Timeout
         /// </summary>
-        public static int TimeOut { get { return to; } set { to = value; } } //= 10;
+        public static int TimeOut { get { return to; } set { to = value; } } 
 
         /// <summary>
         /// Flashes Device With Program
@@ -65,7 +65,7 @@ namespace Micronucleus
 
         private static byte[] getFromElf(byte[] data)
         {
-            return null;
+            return data;
         }
         public static byte[] getFromHex(byte[] data)
         {

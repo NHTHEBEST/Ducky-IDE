@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace UI_Components
 {
-    public partial class ducky_editor : RichTextBox //MetroSetRichTextBox
+    public partial class ducky_editor : RichTextBox 
     {
         public ducky_editor()
         {
@@ -22,12 +22,13 @@ namespace UI_Components
             BackColor = Color.FromArgb(34, 34, 34);
             ForeColor = Color.FromArgb(204,204,204);
             KeyUp += keyPress;
-            KeyDown += keyDown;
             ShortcutsEnabled = true;
             foreach (string tok in IntalTokens)
+            {
                 regex.Add(tok);
+            }
         }
-        private string[] IntalTokens = { "ENTER", "STRING", "GUI" };
+        private readonly string[] IntalTokens = { "ENTER", "STRING", "GUI" };
 
         public AutoScaleMode AutoScaleMode;
 
@@ -39,11 +40,6 @@ namespace UI_Components
                 string buff = string.Join("|",regex.ToArray());
                 return "("+buff+ @"|DELAY\s*[0-9]*|REM( \w*)*(?!(\r\n)))";
             }
-        }
-
-        private void keyDown(object sender, KeyEventArgs e)
-        {
-
         }
 
 
