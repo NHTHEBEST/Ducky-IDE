@@ -83,10 +83,7 @@ namespace Micronucleus
                     lines.Add(line);
                     line = "";
                 }
-                else if (x == '\r')
-                {
-
-                }
+                else if (x == '\r');
                 else
                 {
                     line = line + x;
@@ -227,8 +224,6 @@ namespace Micronucleus
                     Text(data1.ToString());
                     Text(" has occured ...\n");
                     Text(">> Please unplug the device and restart the program. \n");
-                    break;
-                default:
                     break;
                     #endregion
             }
