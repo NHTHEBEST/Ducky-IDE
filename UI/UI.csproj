@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{674cdea3-4761-44b6-b8db-e7e31f59a797}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Flasher\Flasher.vcxproj">
       <Project>{d5f426cc-73bb-4a71-a1ca-9dbfdd2968cc}</Project>
       <Name>Flasher</Name>
@@ -92,6 +96,17 @@
       <Project>{30c950b1-263c-4c62-b357-da59cfc1381f}</Project>
       <Name>UI Components</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

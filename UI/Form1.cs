@@ -72,9 +72,10 @@ namespace UI
         }
 
         private void MetroSetButton1_Click(object sender, EventArgs e)
-        { 
-            System.Threading.Thread t = new System.Threading.Thread(() => Micronucleus.Flasher.Flash(@"C:\Users\NHTHEBEST\Downloads\Wifi_pass.inos.hex").ToString());
-            t.Start();
+        {
+            Core.Compile.GO();
+            //System.Threading.Thread t = new System.Threading.Thread(() => Micronucleus.Flasher.Flash(@"C:\Users\NHTHEBEST\Downloads\arduino_build_392055\Wifi_pass.ino.hex").ToString());
+            //t.Start();
         }
     }
 }
