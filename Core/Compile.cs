@@ -9,16 +9,19 @@ using System.Threading;
 
 namespace Core
 {
-    public class Compile
+    static class Compiler
     {
-        static private string dir = GetTemporaryDirectory();
+        static private readonly string dir = GetTemporaryDirectory();
 
-        static public bool GO()
+        public static byte[] Go(string code)
         {
             GetEnv();
-            build(@"C:\Users\NHTHEBEST\Downloads\arduino_build_821058\Wifi_pass.ino.cpp");
-            return false;
+            string file = Path.Combine(dir, "main.cpp");
+            File.WriteAllText(file, code);
+            build(file);
+            return File.ReadAllBytes(Path.Combine(dir, "out.bin"));
         }
+
         static string GetTemporaryDirectory()
         {
             string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());

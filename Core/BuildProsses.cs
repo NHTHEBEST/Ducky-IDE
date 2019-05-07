@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 
 namespace Core
 {
@@ -65,7 +66,7 @@ namespace Core
         {
             get
             {
-                return Compile(InjectCode);
+                return Compiler.Go(InjectCode);
             }
         }
         #endregion
@@ -77,10 +78,6 @@ namespace Core
         private string ToCode(byte[] encodedpayload)
         {
             return "";
-        }
-        private byte[] Compile(string cppcode)
-        {
-            return null;
         }
         #endregion
     }
