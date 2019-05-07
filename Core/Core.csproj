@@ -38,6 +38,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="complier.zip" />
+    <None Include="jvm.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Flasher\Flasher.vcxproj">
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildProsses.cs" />
+    <Compile Include="codegen.cs" />
     <Compile Include="Compile.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -45,7 +45,7 @@ namespace Core
                     return _InjectBin;
                 }
                 else { 
-                    return Encode(_DuckyCode);
+                    return Compiler.ducky(_DuckyCode, "us");
                 }
                 
             }
@@ -59,25 +59,15 @@ namespace Core
         {
             get
             {
-                return ToCode(InjectBin);
+                return codegen.Gen(InjectBin);
             }
         }
         public byte[] RawBinary
         {
             get
             {
-                return Compiler.Go(InjectCode);
+                return Compiler.cpp(InjectCode);
             }
-        }
-        #endregion
-        #region Funtions
-        private byte[] Encode(string duckycode)
-        {
-            return null;
-        }
-        private string ToCode(byte[] encodedpayload)
-        {
-            return "";
         }
         #endregion
     }

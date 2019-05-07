@@ -13,19 +13,30 @@ namespace Core
     {
         static private readonly string dir = GetTemporaryDirectory();
 
-        public static byte[] Go(string code)
+        public static byte[] cpp(string code)
         {
             GetEnv();
             string file = Path.Combine(dir, "main.cpp");
             File.WriteAllText(file, code);
             build(file);
+            System.Windows.Forms.MessageBox.Show("Test");
             return File.ReadAllBytes(Path.Combine(dir, "out.bin"));
+        }
+
+        public static byte[] ducky(string code, string keyboard)
+        {
+            GetJVM();
+            string file = Path.Combine(dir, "main.txt");
+            File.WriteAllText(file, code);
+            encode(file, keyboard);
+            return File.ReadAllBytes(Path.Combine(dir, "inject.bin"));
         }
 
         static string GetTemporaryDirectory()
         {
             string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirectory);
+            System.Windows.Forms.MessageBox.Show(tempDirectory);
             return tempDirectory;
         }
 
@@ -35,7 +46,24 @@ namespace Core
             File.WriteAllBytes(zip, Properties.Resources.complier);
             UnzipFile(zip, dir);
         }
-        
+        static void GetJVM()
+        {
+            string zip = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".zip");
+            File.WriteAllBytes(zip, Properties.Resources.jvm);
+            UnzipFile(zip, dir);
+        }
+
+        static void encode(string main, string kb)
+        {
+            string binpath = Path.Combine(dir, "bin", "java.exe");
+            string enc = '"' + Path.Combine(dir, "encoder.jar") + '"';
+            string outp = '"' + Path.Combine(dir, "inject.bin") + '"';
+            string inp = '"' + Path.Combine(dir, main) + '"';
+            string args = "-jar " + enc + " -l "+kb+" -o "+outp+" -i "+inp;
+
+            run(binpath, args);
+        }
+
         static void build(string main)
         {
             string binpath = Path.Combine(dir, "bin");

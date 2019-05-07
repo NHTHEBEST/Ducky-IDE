@@ -69,5 +69,63 @@ namespace Core.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to int i = 1;
+        ///bool blink=true;
+        ///
+        ///void setup();
+        ///void loop();
+        ///void setup()
+        ///{
+        ///  pinMode(0, OUTPUT); 
+        ///  pinMode(1, OUTPUT); 
+        ///  DigiKeyboard.delay(2000); 
+        ///}
+        ///
+        ///void loop()
+        ///{
+        ///
+        ///  if (i != 0) {
+        ///    DigiKeyboard.sendKeyStroke(0);
+        ///
+        ///    for (int i=0; i&lt;DUCK_LEN; i+=2)
+        ///    {
+        ///      uint8_t key = pgm_read_word_near(duckraw + i);
+        ///      uint8_t mod = pgm_read_word_near(duckraw + i+1);
+        ///      if (key == 0) 
+        ///      {
+        ///        DigiKeyboard.delay(mod);
+        ///      }
+        ///      else DigiKeyboard.sendKeyStroke(key,mod);
+        ///    }
+        ///    i--;
+        ///    DigiKeybo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string End {
+            get {
+                return ResourceManager.GetString("End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] jvm {
+            get {
+                object obj = ResourceManager.GetObject("jvm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #include &lt;Arduino.h&gt;
+        ///#include &quot;DigiKeyboard.h&quot;.
+        /// </summary>
+        internal static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
     }
 }

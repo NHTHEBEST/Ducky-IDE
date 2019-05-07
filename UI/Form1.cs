@@ -73,8 +73,8 @@ namespace UI
 
         private void MetroSetButton1_Click(object sender, EventArgs e)
         {
-            
-            
+            Core.BuildProsses prosses = new Core.BuildProsses(ducky_editor1.Text);
+            Micronucleus.Flasher.Flash(prosses.RawBinary);
         }
     }
 }
