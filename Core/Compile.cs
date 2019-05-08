@@ -13,9 +13,20 @@ namespace Core
     {
         static private readonly string dir = GetTemporaryDirectory();
 
+        static bool frunb = true;
+        static void frun()
+        {
+            if (frunb)
+            {
+                GetEnv();
+                GetJVM();
+            }
+            frunb = false;
+        }
+
         public static byte[] cpp(string code)
         {
-            GetEnv();
+            frun();
             string file = Path.Combine(dir, "main.cpp");
             File.WriteAllText(file, code);
             build(file);
@@ -25,7 +36,7 @@ namespace Core
 
         public static byte[] ducky(string code, string keyboard)
         {
-            GetJVM();
+            frun();
             string file = Path.Combine(dir, "main.txt");
             File.WriteAllText(file, code);
             encode(file, keyboard);

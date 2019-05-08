@@ -145,6 +145,7 @@
             this.BuildFlash_btn.Text = "Build & Flash";
             this.BuildFlash_btn.ThemeAuthor = "Narwin";
             this.BuildFlash_btn.ThemeName = "MetroDark";
+            this.BuildFlash_btn.Click += new System.EventHandler(this.BuildFlash_btn_Click);
             // 
             // Flash_btn
             // 
@@ -171,6 +172,7 @@
             this.Flash_btn.Text = "Flash";
             this.Flash_btn.ThemeAuthor = "Narwin";
             this.Flash_btn.ThemeName = "MetroDark";
+            this.Flash_btn.Click += new System.EventHandler(this.Flash_btn_Click);
             // 
             // Status_lbl
             // 

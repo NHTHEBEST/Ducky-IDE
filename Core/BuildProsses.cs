@@ -28,6 +28,7 @@ namespace Core
         {
             get
             {
+                IBR = false;
                 return _DuckyCode;
             }
             set
@@ -47,7 +48,7 @@ namespace Core
                 else { 
                     return Compiler.ducky(_DuckyCode, "us");
                 }
-                
+                IBR = true;
             }
             set
             {
