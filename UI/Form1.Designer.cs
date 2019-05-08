@@ -30,11 +30,14 @@
         {
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.metroSetPanel1 = new MetroSet_UI.Controls.MetroSetPanel();
-            this.metroSetButton1 = new MetroSet_UI.Controls.MetroSetButton();
+            this.metroSetComboBox1 = new MetroSet_UI.Controls.MetroSetComboBox();
+            this.BuildFlash_btn = new MetroSet_UI.Controls.MetroSetButton();
+            this.Flash_btn = new MetroSet_UI.Controls.MetroSetButton();
+            this.Status_lbl = new MetroSet_UI.Controls.MetroSetLabel();
+            this.Build_btn = new MetroSet_UI.Controls.MetroSetButton();
             this.metroSetProgressBar1 = new MetroSet_UI.Controls.MetroSetProgressBar();
             this.metroSetPanel2 = new MetroSet_UI.Controls.MetroSetPanel();
             this.ducky_editor1 = new UI_Components.ducky_editor();
-            this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
             this.metroSetPanel1.SuspendLayout();
             this.metroSetPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -69,8 +72,11 @@
             this.metroSetPanel1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.metroSetPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
             this.metroSetPanel1.BorderThickness = 1;
-            this.metroSetPanel1.Controls.Add(this.metroSetLabel1);
-            this.metroSetPanel1.Controls.Add(this.metroSetButton1);
+            this.metroSetPanel1.Controls.Add(this.metroSetComboBox1);
+            this.metroSetPanel1.Controls.Add(this.BuildFlash_btn);
+            this.metroSetPanel1.Controls.Add(this.Flash_btn);
+            this.metroSetPanel1.Controls.Add(this.Status_lbl);
+            this.metroSetPanel1.Controls.Add(this.Build_btn);
             this.metroSetPanel1.Controls.Add(this.metroSetProgressBar1);
             this.metroSetPanel1.Controls.Add(this.metroSetPanel2);
             this.metroSetPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -83,31 +89,129 @@
             this.metroSetPanel1.ThemeAuthor = "Narwin";
             this.metroSetPanel1.ThemeName = "MetroDark";
             // 
-            // metroSetButton1
+            // metroSetComboBox1
             // 
-            this.metroSetButton1.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetButton1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetButton1.DisabledForeColor = System.Drawing.Color.Gray;
-            this.metroSetButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.metroSetButton1.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.metroSetButton1.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
-            this.metroSetButton1.HoverTextColor = System.Drawing.Color.White;
-            this.metroSetButton1.Location = new System.Drawing.Point(611, 533);
-            this.metroSetButton1.Name = "metroSetButton1";
-            this.metroSetButton1.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetButton1.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.metroSetButton1.NormalTextColor = System.Drawing.Color.White;
-            this.metroSetButton1.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.metroSetButton1.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
-            this.metroSetButton1.PressTextColor = System.Drawing.Color.White;
-            this.metroSetButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroSetButton1.Style = MetroSet_UI.Design.Style.Light;
-            this.metroSetButton1.StyleManager = null;
-            this.metroSetButton1.TabIndex = 5;
-            this.metroSetButton1.Text = "metroSetButton1";
-            this.metroSetButton1.ThemeAuthor = "Narwin";
-            this.metroSetButton1.ThemeName = "MetroLite";
-            this.metroSetButton1.Click += new System.EventHandler(this.MetroSetButton1_Click);
+            this.metroSetComboBox1.AllowDrop = true;
+            this.metroSetComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.metroSetComboBox1.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.metroSetComboBox1.BackColor = System.Drawing.Color.Transparent;
+            this.metroSetComboBox1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.metroSetComboBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(110)))));
+            this.metroSetComboBox1.CausesValidation = false;
+            this.metroSetComboBox1.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.metroSetComboBox1.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroSetComboBox1.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.metroSetComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.metroSetComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.metroSetComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.metroSetComboBox1.FormattingEnabled = true;
+            this.metroSetComboBox1.ItemHeight = 20;
+            this.metroSetComboBox1.Items.AddRange(new object[] {
+            "US",
+            "GB"});
+            this.metroSetComboBox1.Location = new System.Drawing.Point(3, 541);
+            this.metroSetComboBox1.Name = "metroSetComboBox1";
+            this.metroSetComboBox1.SelectedItemBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.metroSetComboBox1.SelectedItemForeColor = System.Drawing.Color.White;
+            this.metroSetComboBox1.Size = new System.Drawing.Size(188, 26);
+            this.metroSetComboBox1.Style = MetroSet_UI.Design.Style.Dark;
+            this.metroSetComboBox1.StyleManager = null;
+            this.metroSetComboBox1.TabIndex = 9;
+            this.metroSetComboBox1.ThemeAuthor = "Narwin";
+            this.metroSetComboBox1.ThemeName = "MetroDark";
+            // 
+            // BuildFlash_btn
+            // 
+            this.BuildFlash_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BuildFlash_btn.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BuildFlash_btn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BuildFlash_btn.DisabledForeColor = System.Drawing.Color.Gray;
+            this.BuildFlash_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BuildFlash_btn.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BuildFlash_btn.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.BuildFlash_btn.HoverTextColor = System.Drawing.Color.White;
+            this.BuildFlash_btn.Location = new System.Drawing.Point(250, 541);
+            this.BuildFlash_btn.Name = "BuildFlash_btn";
+            this.BuildFlash_btn.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BuildFlash_btn.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.BuildFlash_btn.NormalTextColor = System.Drawing.Color.White;
+            this.BuildFlash_btn.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BuildFlash_btn.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.BuildFlash_btn.PressTextColor = System.Drawing.Color.White;
+            this.BuildFlash_btn.Size = new System.Drawing.Size(100, 26);
+            this.BuildFlash_btn.Style = MetroSet_UI.Design.Style.Dark;
+            this.BuildFlash_btn.StyleManager = null;
+            this.BuildFlash_btn.TabIndex = 8;
+            this.BuildFlash_btn.Text = "Build & Flash";
+            this.BuildFlash_btn.ThemeAuthor = "Narwin";
+            this.BuildFlash_btn.ThemeName = "MetroDark";
+            // 
+            // Flash_btn
+            // 
+            this.Flash_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Flash_btn.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Flash_btn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Flash_btn.DisabledForeColor = System.Drawing.Color.Gray;
+            this.Flash_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Flash_btn.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.Flash_btn.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.Flash_btn.HoverTextColor = System.Drawing.Color.White;
+            this.Flash_btn.Location = new System.Drawing.Point(356, 541);
+            this.Flash_btn.Name = "Flash_btn";
+            this.Flash_btn.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Flash_btn.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Flash_btn.NormalTextColor = System.Drawing.Color.White;
+            this.Flash_btn.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.Flash_btn.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.Flash_btn.PressTextColor = System.Drawing.Color.White;
+            this.Flash_btn.Size = new System.Drawing.Size(52, 26);
+            this.Flash_btn.Style = MetroSet_UI.Design.Style.Dark;
+            this.Flash_btn.StyleManager = null;
+            this.Flash_btn.TabIndex = 7;
+            this.Flash_btn.Text = "Flash";
+            this.Flash_btn.ThemeAuthor = "Narwin";
+            this.Flash_btn.ThemeName = "MetroDark";
+            // 
+            // Status_lbl
+            // 
+            this.Status_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Status_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Status_lbl.Location = new System.Drawing.Point(414, 541);
+            this.Status_lbl.Name = "Status_lbl";
+            this.Status_lbl.Size = new System.Drawing.Size(100, 23);
+            this.Status_lbl.Style = MetroSet_UI.Design.Style.Dark;
+            this.Status_lbl.StyleManager = null;
+            this.Status_lbl.TabIndex = 6;
+            this.Status_lbl.Text = "Flash Update";
+            this.Status_lbl.ThemeAuthor = "Narwin";
+            this.Status_lbl.ThemeName = "MetroDark";
+            // 
+            // Build_btn
+            // 
+            this.Build_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Build_btn.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Build_btn.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Build_btn.DisabledForeColor = System.Drawing.Color.Gray;
+            this.Build_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Build_btn.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.Build_btn.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(207)))), ((int)(((byte)(255)))));
+            this.Build_btn.HoverTextColor = System.Drawing.Color.White;
+            this.Build_btn.Location = new System.Drawing.Point(197, 541);
+            this.Build_btn.Name = "Build_btn";
+            this.Build_btn.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Build_btn.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
+            this.Build_btn.NormalTextColor = System.Drawing.Color.White;
+            this.Build_btn.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.Build_btn.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(147)))), ((int)(((byte)(195)))));
+            this.Build_btn.PressTextColor = System.Drawing.Color.White;
+            this.Build_btn.Size = new System.Drawing.Size(47, 26);
+            this.Build_btn.Style = MetroSet_UI.Design.Style.Dark;
+            this.Build_btn.StyleManager = null;
+            this.Build_btn.TabIndex = 5;
+            this.Build_btn.Text = "Build";
+            this.Build_btn.ThemeAuthor = "Narwin";
+            this.Build_btn.ThemeName = "MetroDark";
+            this.Build_btn.Click += new System.EventHandler(this.MetroSetButton1_Click);
             // 
             // metroSetProgressBar1
             // 
@@ -144,7 +248,7 @@
             this.metroSetPanel2.Controls.Add(this.ducky_editor1);
             this.metroSetPanel2.Location = new System.Drawing.Point(0, 0);
             this.metroSetPanel2.Name = "metroSetPanel2";
-            this.metroSetPanel2.Size = new System.Drawing.Size(1114, 517);
+            this.metroSetPanel2.Size = new System.Drawing.Size(1114, 535);
             this.metroSetPanel2.Style = MetroSet_UI.Design.Style.Dark;
             this.metroSetPanel2.StyleManager = null;
             this.metroSetPanel2.TabIndex = 3;
@@ -161,22 +265,9 @@
             this.ducky_editor1.Location = new System.Drawing.Point(0, 0);
             this.ducky_editor1.MaxLength = 32767;
             this.ducky_editor1.Name = "ducky_editor1";
-            this.ducky_editor1.Size = new System.Drawing.Size(1114, 517);
+            this.ducky_editor1.Size = new System.Drawing.Size(1114, 535);
             this.ducky_editor1.TabIndex = 2;
             this.ducky_editor1.Text = "";
-            // 
-            // metroSetLabel1
-            // 
-            this.metroSetLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.metroSetLabel1.Location = new System.Drawing.Point(3, 544);
-            this.metroSetLabel1.Name = "metroSetLabel1";
-            this.metroSetLabel1.Size = new System.Drawing.Size(100, 23);
-            this.metroSetLabel1.Style = MetroSet_UI.Design.Style.Dark;
-            this.metroSetLabel1.StyleManager = null;
-            this.metroSetLabel1.TabIndex = 6;
-            this.metroSetLabel1.Text = "Flash Update";
-            this.metroSetLabel1.ThemeAuthor = "Narwin";
-            this.metroSetLabel1.ThemeName = "MetroDark";
             // 
             // Form1
             // 
@@ -208,8 +299,11 @@
         private UI_Components.ducky_editor ducky_editor1;
         private MetroSet_UI.Controls.MetroSetPanel metroSetPanel2;
         private MetroSet_UI.Controls.MetroSetProgressBar metroSetProgressBar1;
-        private MetroSet_UI.Controls.MetroSetButton metroSetButton1;
-        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel1;
+        private MetroSet_UI.Controls.MetroSetButton Build_btn;
+        private MetroSet_UI.Controls.MetroSetLabel Status_lbl;
+        private MetroSet_UI.Controls.MetroSetButton BuildFlash_btn;
+        private MetroSet_UI.Controls.MetroSetButton Flash_btn;
+        private MetroSet_UI.Controls.MetroSetComboBox metroSetComboBox1;
     }
 }
 

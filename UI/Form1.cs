@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI_Components;
 using MetroSet_UI.Forms;
-
+using Core;
 
 namespace UI
 {
     public partial class Form1 : MetroSetForm
     {
+        private BuildProsses EncodeCompile;
         public Form1()
         {
             InitializeComponent();
             Micronucleus.Flasher.FlashUpdate += new Micronucleus.Flasher.FlashUpdateEventHandler(x);
             Micronucleus.Flasher.Text += new Micronucleus.Flasher.TextEventHandler(y);
-            metroSetLabel1.Text = "";
+            Status_lbl.Text = "";
         }
 
 
@@ -28,6 +29,8 @@ namespace UI
         {
             
         }
+
+
         void x(float p, int stage)
         {
             if (stage == 0)
@@ -35,7 +38,7 @@ namespace UI
                 BeginInvoke((MethodInvoker)delegate
                 {
                     // Running on the UI thread
-                    metroSetLabel1.Text = "Conecting";
+                    Status_lbl.Text = "Conecting";
                 });
             }
             else if (stage == 1)
@@ -43,7 +46,7 @@ namespace UI
                 BeginInvoke((MethodInvoker)delegate
                 {
                     // Running on the UI thread
-                    metroSetLabel1.Text = "Erasing";
+                    Status_lbl.Text = "Erasing";
                 });
             }
             else if (stage == 2)
@@ -51,12 +54,12 @@ namespace UI
                 BeginInvoke((MethodInvoker)delegate
                 {
                     // Running on the UI thread
-                    metroSetLabel1.Text = "Flashing";
+                    Status_lbl.Text = "Flashing";
                 });
             }
             else
             {
-                metroSetLabel1.Text = "";
+                Status_lbl.Text = "";
             }
             int y = (int)(p * 100f);
             metroSetProgressBar1.Value = y;
@@ -73,8 +76,18 @@ namespace UI
 
         private void MetroSetButton1_Click(object sender, EventArgs e)
         {
-            Core.BuildProsses prosses = new Core.BuildProsses(ducky_editor1.Text);
+            BuildProsses prosses = new BuildProsses(ducky_editor1.Text);
             Micronucleus.Flasher.Flash(prosses.RawBinary);
+        }
+
+
+        private void Build()
+        {
+            EncodeCompile = new BuildProsses(ducky_editor1.Text);
+        }
+        private void Flash()
+        {
+
         }
     }
 }
