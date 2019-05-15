@@ -13,20 +13,10 @@ namespace Core
     {
         static private readonly string dir = GetTemporaryDirectory();
 
-        static bool frunb = true;
-        static void frun()
-        {
-            if (frunb)
-            {
-                GetEnv();
-                GetJVM();
-            }
-            frunb = false;
-        }
 
         public static byte[] cpp(string code)
         {
-            frun();
+            ENV.Install();
             string file = Path.Combine(dir, "main.cpp");
             File.WriteAllText(file, code);
             build(file);
@@ -36,7 +26,7 @@ namespace Core
 
         public static byte[] ducky(string code, string keyboard)
         {
-            frun();
+            ENV.Install();
             string file = Path.Combine(dir, "main.txt");
             File.WriteAllText(file, code);
             encode(file, keyboard);
@@ -47,27 +37,15 @@ namespace Core
         {
             string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(tempDirectory);
-            System.Windows.Forms.MessageBox.Show(tempDirectory);
+            //System.Windows.Forms.MessageBox.Show(tempDirectory);
             return tempDirectory;
         }
 
-        static void GetEnv()
-        {
-            string zip = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()+ ".zip");
-            File.WriteAllBytes(zip, Properties.Resources.complier);
-            UnzipFile(zip, dir);
-        }
-        static void GetJVM()
-        {
-            string zip = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".zip");
-            File.WriteAllBytes(zip, Properties.Resources.jvm);
-            UnzipFile(zip, dir);
-        }
 
         static void encode(string main, string kb)
         {
-            string binpath = Path.Combine(dir, "bin", "java.exe");
-            string enc = '"' + Path.Combine(dir, "encoder.jar") + '"';
+            string binpath = Path.Combine(ENV.ENVPath, "bin", "java.exe");
+            string enc = '"' + Path.Combine(ENV.ENVPath, "encoder.jar") + '"';
             string outp = '"' + Path.Combine(dir, "inject.bin") + '"';
             string inp = '"' + Path.Combine(dir, main) + '"';
             string args = "-jar " + enc + " -l "+kb+" -o "+outp+" -i "+inp;
@@ -77,15 +55,15 @@ namespace Core
 
         static void build(string main)
         {
-            string binpath = Path.Combine(dir, "bin");
-            string libPath = Path.Combine(dir, "libs");
+            string binpath = Path.Combine(ENV.ENVPath, "bin");
+            string libPath = Path.Combine(ENV.ENVPath, "libs");
 
             string gpp = Path.Combine(binpath, "avr-g++.exe");
             string gcc = Path.Combine(binpath, "avr-gcc.exe");
             string objcopy = Path.Combine(binpath, "avr-objcopy.exe");
 
             string buildarg = "-c -g -Os -w -fno-exceptions -ffunction-sections -fdata-sections -MMD -mmcu=attiny85 -DF_CPU=16500000L -DARDUINO=10809 -DARDUINO_AVR_DIGISPARK -DARDUINO_ARCH_AVR \"-I"
-                +Path.Combine(dir,"make")+"\" -o \"" + Path.Combine(dir,"out.o")+"\" \""+main+"\"";
+                +Path.Combine(ENV.ENVPath, "make")+"\" -o \"" + Path.Combine(dir,"out.o")+"\" \""+main+"\"";
             string linkarg = "-Os -Wl,--gc-sections -mmcu=attiny85 -o \""+Path.Combine(dir,"out.elf") + "\" \"" + Path.Combine(dir, "out.o") + "\" \"" + Path.Combine(libPath, "DigisparkKeyboard.o") + "\" \"" + 
                 Path.Combine(libPath, "pins_arduino.c.o") + "\" \"" + Path.Combine(libPath, "core.a") +"\" \"-L"+dir+"\" -lm";
             string objcopyarg = "-O binary -R .eeprom \""+ Path.Combine(dir, "out.elf")+"\" \""+ Path.Combine(dir, "out.bin")+"\"";
@@ -111,7 +89,22 @@ namespace Core
 
             cmd.ErrorDataReceived += Async_Data_Received;
             cmd.OutputDataReceived += Async_Data_Received;
-            cmd.Start();
+            bool ret = false;
+        retry:
+            try
+            {
+                cmd.Start();
+            }
+            catch (System.ComponentModel.Win32Exception exception)
+            {
+                if (ret)
+                {
+                    throw new Exception("ENV ERROR");
+                }
+                ENV.ReInstall();
+                goto retry;
+            }
+            //System.ComponentModel.Win32Exception: 'The system cannot find the file specified'
             cmd.BeginErrorReadLine();
             cmd.BeginOutputReadLine();
             cmd.WaitForExit();
@@ -122,30 +115,6 @@ namespace Core
             System.Windows.Forms.MessageBox.Show(e.Data); 
         }
 
-        static void UnzipFile(string zipPath, string folderPath)
-        {
-            try
-            {
-                if (!File.Exists(zipPath))
-                {
-                    throw new FileNotFoundException();
-                }
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                Shell32.Shell objShell = new Shell32.Shell();
-                Shell32.Folder destinationFolder = objShell.NameSpace(folderPath);
-                Shell32.Folder sourceFile = objShell.NameSpace(zipPath);
-                foreach (var file in sourceFile.Items())
-                {
-                    destinationFolder.CopyHere(file, 4 | 16);
-                }
-            }
-            catch (Exception e)
-            {
-                //handle error
-            }
-        }
+        
     }
 }

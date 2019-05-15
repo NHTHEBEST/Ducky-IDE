@@ -50,6 +50,7 @@
     <Compile Include="BuildProsses.cs" />
     <Compile Include="codegen.cs" />
     <Compile Include="Compile.cs" />
+    <Compile Include="ENV.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
