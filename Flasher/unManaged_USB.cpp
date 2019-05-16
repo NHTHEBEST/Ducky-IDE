@@ -107,6 +107,7 @@ int UnManaged_USB::cpp_flash_dev(unsigned char * program, size_t p_size, int fas
         }
     }
 	printProgress(0);
+	printText(20, 0, 0);
     //printf(">> Micronucleus done. Thank you!\n");
     return 1;
 }

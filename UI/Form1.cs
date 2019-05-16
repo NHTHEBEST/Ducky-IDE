@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI_Components;
 using MetroSet_UI.Forms;
+using System.Threading;
 
 namespace UI
 {
@@ -24,12 +25,28 @@ namespace UI
 
         private void Functions_UpdateProgressText(string value)
         {
-            Status_lbl.Text = value;
+            MethodInvoker mi = new MethodInvoker(() => Status_lbl.Text = value);
+            if (Status_lbl.InvokeRequired)
+            {
+                Status_lbl.Invoke(mi);
+            }
+            else
+            {
+                mi.Invoke();
+            }
         }
 
         private void Functions_UpdateProgress(int value)
         {
-            metroSetProgressBar1.Value = value;
+            MethodInvoker mi = new MethodInvoker(() => metroSetProgressBar1.Value = value);
+            if (metroSetProgressBar1.InvokeRequired)
+            {
+                metroSetProgressBar1.Invoke(mi);
+            }
+            else
+            {
+                mi.Invoke();
+            }
         }
 
         private void Form1_Load_1(object sender, EventArgs e)
@@ -40,23 +57,30 @@ namespace UI
 
         private void MetroSetButton1_Click(object sender, EventArgs e)
         {
-            Functions.Build(ducky_editor1.Text);
+            string data = ducky_editor1.Text;
+            Thread thread = new Thread(() => Functions.Build(data));
+            thread.Start();
         }
 
         private void Flash_btn_Click(object sender, EventArgs e)
         {
-            Functions.Flash();
+            Thread thread = new Thread(() => Functions.Flash());
+            thread.Start();
         }
 
         private void BuildFlash_btn_Click(object sender, EventArgs e)
         {
-            Functions.Build(ducky_editor1.Text);
-            Functions.Flash();
+            string data = ducky_editor1.Text;
+            Thread thread = new Thread(() => Functions.Build(data));
+            thread.Start();
+            Thread thread2 = new Thread(() => Functions.Flash());
+            thread2.Start();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Functions.Clean();
+
         }
     }
 }

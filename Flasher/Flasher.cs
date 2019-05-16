@@ -122,7 +122,9 @@ namespace Micronucleus
 
             fixed (byte* x = &program[0])
             {
-                return musb.Flash(x, program.Length, FastMode, TimeOut, Run);
+                bool v = musb.Flash(x, program.Length, FastMode, TimeOut, Run);
+                Text("Done\n");
+                return v;
             }
         }
 
@@ -224,6 +226,12 @@ namespace Micronucleus
                     Text(data1.ToString());
                     Text(" has occured ...\n");
                     Text(">> Please unplug the device and restart the program. \n");
+                    break;
+                case 20:
+                    Text("Done");
+                    break;
+                default:
+                    Text("ERROR");
                     break;
                     #endregion
             }

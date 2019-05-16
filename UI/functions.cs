@@ -63,7 +63,25 @@ namespace UI
         }
         private static void Flasher_Text(string text)
         {
-            UpdateProgressText(text);
+            string Outp = "";
+            if (text.StartsWith("> Device fo"))
+            {
+                Outp = "Device Found";
+            }
+            else if (text.StartsWith("> Erasing th"))
+            {
+                Outp = "Erasing";
+            }
+            else if (text.StartsWith("> Starting to uplo"))
+            {
+                Outp = "Flashing";
+            }
+            else if (text.StartsWith("Don"))
+            {
+                Outp = "Done";
+            }
+            // end
+            UpdateProgressText(Outp);
         }
 
         private static void Flasher_FlashUpdate(float value, int stage)
