@@ -287,6 +287,7 @@
             this.Text = "Ducky IDE by NHTHEBEST";
             this.TextColor = System.Drawing.Color.White;
             this.ThemeName = "MetroDark";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.metroSetPanel1.ResumeLayout(false);
             this.metroSetPanel2.ResumeLayout(false);

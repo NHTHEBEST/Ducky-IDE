@@ -57,7 +57,10 @@ namespace UI
             }
             frunb = false;
         }
-
+        public static void Clean()
+        {
+            buildProsses.clean();
+        }
         private static void Flasher_Text(string text)
         {
             UpdateProgressText(text);

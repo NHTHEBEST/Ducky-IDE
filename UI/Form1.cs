@@ -53,5 +53,10 @@ namespace UI
             Functions.Build(ducky_editor1.Text);
             Functions.Flash();
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Functions.Clean();
+        }
     }
 }

@@ -24,6 +24,10 @@ namespace Core
         }
         #endregion
         #region Public
+        public void clean()
+        {
+            Compiler.clean();
+        }
         public string DuckyCode
         {
             get

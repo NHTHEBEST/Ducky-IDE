@@ -13,6 +13,10 @@ namespace Core
     {
         static private readonly string dir = GetTemporaryDirectory();
 
+        public static void clean()
+        {
+            Directory.Delete(dir, true);
+        }
 
         public static byte[] cpp(string code)
         {
@@ -94,8 +98,9 @@ namespace Core
             try
             {
                 cmd.Start();
+                log(exePath+" "+Args); 
             }
-            catch (System.ComponentModel.Win32Exception exception)
+            catch (System.ComponentModel.Win32Exception)
             {
                 if (ret)
                 {
@@ -110,11 +115,28 @@ namespace Core
             cmd.WaitForExit();
         }
 
+        static readonly string LogPath = Path.Combine(dir, "log.log");
         private static void Async_Data_Received(object sender, DataReceivedEventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show(e.Data); 
+            //System.Windows.Forms.MessageBox.Show(e.Data); 
+            log(e.Data);
         }
 
-        
+        static void log(string x)
+        {
+            if (x == "")
+            {
+                return;
+            }
+            try
+            {
+                File.AppendAllText(LogPath, x);
+                File.AppendAllText(LogPath, "\n");
+            }
+            catch
+            {
+                log(x);
+            }
+        }
     }
 }
