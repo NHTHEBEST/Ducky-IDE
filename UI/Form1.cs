@@ -68,19 +68,10 @@ namespace UI
             thread.Start();
         }
 
-        private void BuildFlash_btn_Click(object sender, EventArgs e)
-        {
-            string data = ducky_editor1.Text;
-            Thread thread = new Thread(() => Functions.Build(data));
-            thread.Start();
-            Thread thread2 = new Thread(() => Functions.Flash());
-            thread2.Start();
-        }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Functions.Clean();
-
         }
     }
 }

@@ -11,6 +11,12 @@ namespace Core
 {
     static class Compiler
     {
+        public delegate void UpdateProgressHandler(int value);
+        public static event UpdateProgressHandler UpdateProgress;
+
+        public delegate void UpdateProgressTextHandler(string value);
+        public static event UpdateProgressTextHandler UpdateProgressText;
+
         static private readonly string dir = GetTemporaryDirectory();
 
         public static void clean()
@@ -20,21 +26,36 @@ namespace Core
 
         public static byte[] cpp(string code)
         {
+            UpdateProgress(0);
+            UpdateProgressText("Installing Env");
             ENV.Install();
+            UpdateProgress(50);
+            UpdateProgressText("Writing main.cpp");
             string file = Path.Combine(dir, "main.cpp");
             File.WriteAllText(file, code);
+            UpdateProgressText("Building main.cpp -> out.bin");
             build(file);
-            System.Windows.Forms.MessageBox.Show("Test");
-            return File.ReadAllBytes(Path.Combine(dir, "out.bin"));
+            byte[] x = File.ReadAllBytes(Path.Combine(dir, "out.bin"));
+            UpdateProgressText("Done main.cpp -> out.bin");
+            UpdateProgress(100);
+            return x;
         }
 
         public static byte[] ducky(string code, string keyboard)
         {
+            UpdateProgress(0);
+            UpdateProgressText("Installing Env");
             ENV.Install();
+            UpdateProgress(50);
+            UpdateProgressText("Wirting main.txt");
             string file = Path.Combine(dir, "main.txt");
             File.WriteAllText(file, code);
+            UpdateProgressText("Encoding main.txt -> inject.bin");
             encode(file, keyboard);
-            return File.ReadAllBytes(Path.Combine(dir, "inject.bin"));
+            byte[] x = File.ReadAllBytes(Path.Combine(dir, "inject.bin"));
+            UpdateProgressText("Done main.txt -> inject.bin");
+            UpdateProgress(100);
+            return x;
         }
 
         static string GetTemporaryDirectory()

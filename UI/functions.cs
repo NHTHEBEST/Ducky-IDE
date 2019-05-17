@@ -51,20 +51,32 @@ namespace UI
         {
             if (frunb)
             {
-                Flasher.FlashUpdate += Flasher_FlashUpdate;
-                Flasher.Text += Flasher_Text;
-                
+                Flasher.FlashUpdate += ProgressUpdate;
+                Flasher.Text += TextUpdate;
+                buildProsses.UpdateProgressText += TextUpdate;
+                buildProsses.UpdateProgress += BuildProsses_UpdateProgress; ;
             }
             frunb = false;
         }
+
+        private static void BuildProsses_UpdateProgress(int value)
+        {
+            UpdateProgress(value);
+        }
+
         public static void Clean()
         {
             buildProsses.clean();
         }
-        private static void Flasher_Text(string text)
+        static string Outp = "";
+        private static void TextUpdate(string text)
         {
-            string Outp = "";
-            if (text.StartsWith("> Device fo"))
+            
+            if (text.StartsWith("> waitin"))
+            {
+                Outp = "Connect Device";
+            }
+            else if (text.StartsWith("> Device fo"))
             {
                 Outp = "Device Found";
             }
@@ -84,7 +96,7 @@ namespace UI
             UpdateProgressText(Outp);
         }
 
-        private static void Flasher_FlashUpdate(float value, int stage)
+        private static void ProgressUpdate(float value, int stage)
         {
             float x = value * 100.0f;
             int y = (int)x;
