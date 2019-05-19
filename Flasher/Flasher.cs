@@ -132,6 +132,32 @@ namespace Micronucleus
         {
             FlashUpdate(data, stage);
         }
+
+        private static readonly string[] Table = {
+            "", //0
+            "", //1
+            "> Device search timed out\n", //2
+            "> Device found!\n", //4
+            "", //5
+            "", //6
+            "", //7
+            "", //8
+            "", //9
+            "> No data in input file, exiting.\n", //10
+            "", //11
+            "> Erasing the memory ...\n", //12
+            ">> (!) Connection not working. Unplug and reconnect\n   device usb connector, or reset it some other way to continue.\n", //13
+            ">> Reconnected! Continuing upload sequence...\n", //14
+            "", //15
+            "> Starting to upload ...\n", //16
+            "", //17
+            "> Starting the user app ...\n> Warning Ducky Script will run in 5 sec\n", //18
+            "", //19
+            "Done", //20
+            ""  //21
+
+        };
+
         private static void onUpdateText(int code, int data1, int data2)
         {
             switch (code)
@@ -142,12 +168,6 @@ namespace Micronucleus
                     Text("> waiting for ");
                     Text(data1.ToString());
                     Text(" sec\n> Please plug in the device ... \n");
-                    break;
-                case 2:
-                    Text("> Device search timed out\n");
-                    break;
-                case 3:
-                    Text("> Device found!\n");
                     break;
                 case 4:
                     Text("> Device has firmware version ");
@@ -184,23 +204,10 @@ namespace Micronucleus
                     Text(data1.ToString());
                     Text("ms\n");
                     break;
-                case 10:
-                    Text("> No data in input file, exiting.\n");
-                    break;
                 case 11:
                     Text("> Program file is ");
                     Text(data1.ToString());
                     Text(" bytes too big for the bootloader!\n");
-                    break;
-                case 12:
-                    Text("> Erasing the memory ...\n");
-                    break;
-                case 13:
-                    Text(">> (!) Connection not working. Unplug and reconnect\n");
-                    Text("   device usb connector, or reset it some other way to continue.\n");
-                    break;
-                case 14:
-                    Text(">> Reconnected! Continuing upload sequence...\n");
                     break;
                 case 15:
                     Text(">> Flash erase error ");
@@ -208,18 +215,11 @@ namespace Micronucleus
                     Text(" has occured ...\n");
                     Text(">> Please unplug the device and restart the program.\n");
                     break;
-                case 16:
-                    Text("> Starting to upload ...\n");
-                    break;
                 case 17:
                     Text(">> Flash write error ");
                     Text(data1.ToString());
                     Text(" has occured ...\n");
                     Text(">> Please unplug the device and restart the program.\n");
-                    break;
-                case 18:
-                    Text("> Starting the user app ...\n");
-                    Text("> Warning Ducky Script will run in 5 sec\n");
                     break;
                 case 19:
                     Text(">> Run error ");
@@ -227,11 +227,12 @@ namespace Micronucleus
                     Text(" has occured ...\n");
                     Text(">> Please unplug the device and restart the program. \n");
                     break;
-                case 20:
-                    Text("Done");
-                    break;
                 default:
-                    Text("ERROR");
+                    try
+                    {
+                        Text(Table[code]);
+                    }
+                    catch { }
                     break;
                     #endregion
             }
