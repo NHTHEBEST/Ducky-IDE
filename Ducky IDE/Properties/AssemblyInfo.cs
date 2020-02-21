@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UI components")]
+[assembly: AssemblyTitle("Ducky IDE")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UI components")]
+[assembly: AssemblyProduct("Ducky IDE")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7bb4be45-f0f9-42ef-9c73-4853d3b34e56")]
+[assembly: Guid("944d559a-7d2b-4eff-aa75-0d13c008bf88")]
 
 // Version information for an assembly consists of the following four values:
 //

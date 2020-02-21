@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BB4BE45-F0F9-42EF-9C73-4853D3B34E56}</ProjectGuid>
+    <ProjectGuid>{30C950B1-263C-4C62-B357-DA59CFC1381F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>UI_components</RootNamespace>
-    <AssemblyName>UI components</AssemblyName>
+    <RootNamespace>UI_Components</RootNamespace>
+    <AssemblyName>UI Components</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,11 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FastColoredTextBox, Version=2.16.24.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
-      <HintPath>..\packages\FCTB.2.16.24\lib\FastColoredTextBox.dll</HintPath>
+    <Reference Include="MetroSet UI, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroSet_UI.1.0.4\lib\net45\MetroSet UI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,22 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ducky Script Code Box.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="ducky editor.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Ducky Script Code Box.Designer.cs">
-      <DependentUpon>Ducky Script Code Box.cs</DependentUpon>
+    <Compile Include="ducky editor.Designer.cs">
+      <DependentUpon>ducky editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ducky Script Code Box.resx">
-      <DependentUpon>Ducky Script Code Box.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
