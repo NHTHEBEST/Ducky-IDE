@@ -1,0 +1,61 @@
+﻿<doc>
+  <brackets left="&lt;" right="&gt;" />
+  <style name="Comment" color="Green" fontStyle="Italic" />
+  <style name="Delay" color="Purple" fontStyle="Bold"/>
+  <style name="String" color="Yellow"/>
+  <style name="Gui" color="Red"/>
+  <style name="Mod" color="Blue"/>
+  <style name="Repeat" color="Orange"/>
+<style name="Enter" color="Pink"/>
+  
+<rule style="Enter">ENTER</rule>
+  
+  
+  <rule style="Comment">REM.+</rule>
+  
+
+  <rule style="Delay">DELAY ([0-9])\w+</rule>
+  <rule style="Delay">DELAY ([0-9])</rule>
+  <rule style="Delay">DELAY</rule>
+  
+  <rule style="String">STRING</rule>
+
+  <rule style="Gui">GUI</rule>
+  <rule style="Gui">WINDOWS</rule>
+
+  <rule style="Mod">SHIFT</rule>
+  <rule style="Mod">APP</rule>
+  <rule style="Mod">MENU</rule>
+  <rule style="Mod">ALT</rule>
+  <rule style="Mod">WINDOWSCONTROL</rule>
+  <rule style="Mod">CTRL</rule>
+  <rule style="Mod">DOWN</rule>
+  <rule style="Mod">LEFT</rule>
+  <rule style="Mod">RIGHT</rule>
+  <rule style="Mod">UP</rule>
+  <rule style="Mod">UPARROW </rule>
+  <rule style="Mod">DOWNARROW </rule>
+  <rule style="Mod">LEFTARROW </rule>
+  <rule style="Mod">RIGHTARROW </rule>
+  <rule style="Mod">BREAK</rule>
+  <rule style="Mod">PAUSE</rule>
+  <rule style="Mod">CAPSLOCK</rule>
+  <rule style="Mod">DELETE</rule>
+  <rule style="Mod">END</rule>
+  <rule style="Mod">ESC</rule>
+  <rule style="Mod">ESCAPE</rule>
+  <rule style="Mod">HOME</rule>
+  <rule style="Mod">INSERT</rule>
+  <rule style="Mod">NUMLOCK</rule>
+  <rule style="Mod">PAGEUP</rule>
+  <rule style="Mod">PAGEDOWN</rule>
+  <rule style="Mod">PRINTSCREEN</rule>
+  <rule style="Mod">SCROLLLOCK</rule>
+  <rule style="Mod">SPACE</rule>
+  <rule style="Mod">TAB</rule>
+
+  <rule style="Repeat">REPEAT</rule>
+  <rule style="Repeat">REPEAT ([0-9])\w+</rule>
+  <rule style="Repeat">REPEAT ([0-9])</rule>
+
+</doc>

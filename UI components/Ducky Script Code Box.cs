@@ -31,6 +31,7 @@ namespace UI_components
             fastColoredTextBox1.DescriptionFile = "Ducky.xml";
 
 
+
             string[] keywords =
                 { "REPEAT", "REM", "ENTER", "STRING", "DELAY", "GUI", "WINDOWS",
                 "APP", "MENU", "SHIFT", "ALT", "CONTROL", "CTRL", "DOWNARROW", "LEFTARROW",
@@ -42,13 +43,29 @@ namespace UI_components
             autocompleteMenu = new FastColoredTextBoxNS.AutocompleteMenu(fastColoredTextBox1);
             autocompleteMenu.MinFragmentLength = 2;
             autocompleteMenu.Items.SetAutocompleteItems(keywords);
-            autocompleteMenu.Items.MaximumSize = new System.Drawing.Size(200, 300);
+            autocompleteMenu.Items.MaximumSize = new Size(200, 300);
             autocompleteMenu.Items.Width = 200;
             autocompleteMenu.AllowTabKey = true;
 
             autocompleteMenu.BackColor = Color.FromArgb(40, 42, 54);
             autocompleteMenu.ForeColor = Color.FromArgb(98, 114, 164);
             autocompleteMenu.SelectedColor = Color.FromArgb(50, 255, 255, 255);
+
+
+            fastColoredTextBox1.Update();
+            fastColoredTextBox1.OnKeyPressed('\n');
+        }
+
+        public string Text
+        {
+            get
+            {
+                return fastColoredTextBox1.Text;
+            }
+            set
+            {
+                fastColoredTextBox1.Text = value;
+            }
         }
     }
 }
