@@ -12,6 +12,7 @@ namespace UI_components
 {
     public partial class Ducky_Script_Code_Box : UserControl
     {
+
         FastColoredTextBoxNS.AutocompleteMenu autocompleteMenu;
         public Ducky_Script_Code_Box()
         {
@@ -65,6 +66,21 @@ namespace UI_components
             set
             {
                 fastColoredTextBox1.Text = value;
+            }
+        }
+
+        public bool Ducky
+        {
+            get
+            {
+                return FastColoredTextBoxNS.Language.Custom==fastColoredTextBox1.Language;
+            }
+            set
+            {
+                if (value)
+                    fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.Custom;
+                else
+                    fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.CSharp;
             }
         }
     }

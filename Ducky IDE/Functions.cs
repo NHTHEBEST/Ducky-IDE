@@ -23,7 +23,7 @@ namespace Ducky_IDE
         static byte[] prog = { 0, 0 };
         static bool build;
 
-        public static void Build(string duckycode, string keyboard = "us")
+        public static void Build(string duckycode, string keyboard = "us", bool cpp = false)
         {
             frun();
             if (code == duckycode)
@@ -32,10 +32,18 @@ namespace Ducky_IDE
                 return;
             }
             code = duckycode;
+            if (cpp)
+                buildProsses.InjectCode = duckycode;
             buildProsses.DuckyCode = code;
             inject = buildProsses.InjectBin;
             prog = buildProsses.RawBinary;
             build = true;
+        }
+        public static string GetCpp(string duckycode)
+        {
+            frun();
+            buildProsses.DuckyCode = duckycode;
+            return buildProsses.InjectCode;
         }
         public static void Flash()
         {

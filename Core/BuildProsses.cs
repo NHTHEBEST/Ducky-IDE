@@ -21,6 +21,7 @@ namespace Core
         #region Private
         private string _DuckyCode;
         private byte[] _InjectBin;
+        private string _InjectCode = "";
         #endregion
         #region Setup
         public BuildProsses(string Code)
@@ -76,10 +77,10 @@ namespace Core
                 {
                     return _InjectBin;
                 }
-                else { 
+                else {
+                    IBR = true;
                     return Compiler.ducky(_DuckyCode, "us");
                 }
-                IBR = true;
             }
             set
             {
@@ -87,11 +88,25 @@ namespace Core
                 IBR = true;
             }
         }
+        
         public string InjectCode
         {
             get
             {
-                return codegen.Gen(InjectBin);
+                string tmp;
+                if (_InjectCode.Length == 0)
+                    _InjectCode = codegen.Gen(InjectBin);
+                else
+                {
+                    tmp = _InjectCode;
+                    _InjectCode = codegen.Gen(InjectBin);
+                    return tmp;
+                }
+                return _InjectCode;
+            }
+            set
+            {
+                _InjectCode = value;
             }
         }
         public byte[] RawBinary

@@ -13,6 +13,8 @@ namespace Ducky_IDE
     public partial class Ducky_IDE : MetroSet_UI.Forms.MetroSetForm
     {
         Thread thread;
+        string ducky = "";
+        string cpp = "";
         public Ducky_IDE()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace Ducky_IDE
             Functions.UpdateProgress += Functions_UpdateProgress;
             Functions.UpdateProgressText += Functions_UpdateProgressText;
             FormClosed += Ducky_IDE_FormClosed;
+            
             metroSetLabel1.BringToFront();
             metroSetButton2.BringToFront();
             metroSetButton1.BringToFront();
@@ -80,6 +83,26 @@ namespace Ducky_IDE
             ExitBuildFlash();
             thread = new Thread(() => Functions.Flash());
             thread.Start();
+        }
+
+        bool DuckyMode = true;
+
+        private void MetroSetLabel1_Click(object sender, EventArgs e)
+        {
+            if (DuckyMode)
+            {
+                ducky = ducky_Script_Code_Box1.Text;
+                cpp = Functions.GetCpp(ducky);
+                ducky_Script_Code_Box1.Ducky = false;
+                ducky_Script_Code_Box1.Text = cpp;
+                DuckyMode = false;
+            }
+            else
+            {
+                ducky_Script_Code_Box1.Text = ducky;
+                ducky_Script_Code_Box1.Ducky = true;
+                DuckyMode = true;
+            }
         }
     }
 }

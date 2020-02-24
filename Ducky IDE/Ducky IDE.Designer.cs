@@ -33,8 +33,8 @@
             this.metroSetProgressBar1 = new MetroSet_UI.Controls.MetroSetProgressBar();
             this.metroSetButton1 = new MetroSet_UI.Controls.MetroSetButton();
             this.metroSetButton2 = new MetroSet_UI.Controls.MetroSetButton();
-            this.ducky_Script_Code_Box1 = new UI_components.Ducky_Script_Code_Box();
             this.metroSetLabel1 = new MetroSet_UI.Controls.MetroSetLabel();
+            this.ducky_Script_Code_Box1 = new UI_components.Ducky_Script_Code_Box();
             this.SuspendLayout();
             // 
             // styleManager1
@@ -148,13 +148,6 @@
             this.metroSetButton2.ThemeName = "MetroDark";
             this.metroSetButton2.Click += new System.EventHandler(this.MetroSetButton2_Click);
             // 
-            // ducky_Script_Code_Box1
-            // 
-            this.ducky_Script_Code_Box1.Location = new System.Drawing.Point(12, 70);
-            this.ducky_Script_Code_Box1.Name = "ducky_Script_Code_Box1";
-            this.ducky_Script_Code_Box1.Size = new System.Drawing.Size(776, 339);
-            this.ducky_Script_Code_Box1.TabIndex = 0;
-            // 
             // metroSetLabel1
             // 
             this.metroSetLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -168,6 +161,18 @@
             this.metroSetLabel1.Text = "Text";
             this.metroSetLabel1.ThemeAuthor = "Narwin";
             this.metroSetLabel1.ThemeName = "MetroDark";
+            this.metroSetLabel1.Click += new System.EventHandler(this.MetroSetLabel1_Click);
+            // 
+            // ducky_Script_Code_Box1
+            // 
+            this.ducky_Script_Code_Box1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ducky_Script_Code_Box1.Ducky = true;
+            this.ducky_Script_Code_Box1.Location = new System.Drawing.Point(12, 73);
+            this.ducky_Script_Code_Box1.Name = "ducky_Script_Code_Box1";
+            this.ducky_Script_Code_Box1.Size = new System.Drawing.Size(776, 336);
+            this.ducky_Script_Code_Box1.TabIndex = 0;
             // 
             // Ducky_IDE
             // 
