@@ -60,12 +60,12 @@ namespace Core
         {
             get
             {
-                IBR = false;
                 return _DuckyCode;
             }
             set
             {
                 _DuckyCode = value;
+                IBR = false;
             }
         }
         private bool IBR;
@@ -79,7 +79,8 @@ namespace Core
                 }
                 else {
                     IBR = true;
-                    return Compiler.ducky(_DuckyCode, "us");
+                    _InjectBin = Compiler.ducky(_DuckyCode, "us");
+                    return _InjectBin;
                 }
             }
             set
@@ -93,6 +94,7 @@ namespace Core
         {
             get
             {
+                //return codegen.Gen(InjectBin);
                 string tmp;
                 if (_InjectCode.Length == 0)
                     _InjectCode = codegen.Gen(InjectBin);

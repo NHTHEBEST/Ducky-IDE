@@ -5,6 +5,10 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
+using System.Security.Principal;
+using System.Diagnostics;
+using System.Reflection;
+using System.IO.Compression;
 
 namespace Ducky_IDE
 {
@@ -21,8 +25,40 @@ namespace Ducky_IDE
         /// The main entry point for the application.
         /// </summary>
         
-        static void Main()
+        static void Main(string[] args)
         {
+            if (args.Contains("-driverinstall"))
+            {
+                if (!IsRunAsAdmin())
+                {
+                    MessageBox.Show("Please Run As Admin for driver install");
+                    goadmin(args);
+
+                    return;
+                }
+                // 
+                string zip = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".zip");
+                string temp = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() );
+                string data = Path.Combine(temp, "Digistump Drivers");
+                string installer = Path.Combine(data, "Install Drivers.exe");
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("http://api.nhthebest.com/duckyide/Digistump.Drivers.zip", zip);
+                }
+                ZipFile.ExtractToDirectory(zip, temp);
+                Process driverinstaller = Process.Start(installer);
+                driverinstaller.WaitForExit();
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("http://api.nhthebest.com/duckyide/libusb0.dll", "libusb0.dll");
+                }
+                return;
+            }
+            if (!File.Exists("libusb0.dll"))
+            {
+                string[] arg = { "-driverinstall" };
+                goadmin(arg);
+            }
             if (!File.Exists("Core.dll"))
             {
                 // get core.dll
@@ -82,6 +118,38 @@ namespace Ducky_IDE
             thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
             thread.Start();
             
+        }
+        static void goadmin(string[] args)
+        {
+            ProcessStartInfo proc = new ProcessStartInfo();
+            proc.UseShellExecute = true;
+            proc.WorkingDirectory = Environment.CurrentDirectory;
+            proc.FileName = Assembly.GetEntryAssembly().CodeBase;
+
+            foreach (string arg in args)
+            {
+                proc.Arguments += String.Format("\"{0}\" ", arg);
+            }
+
+            proc.Verb = "runas";
+
+            try
+            {
+                var x = Process.Start(proc);
+                
+            }
+            catch
+            {
+                Console.WriteLine("This application requires elevated credentials in order to operate correctly!");
+            }
+            Application.Exit();
+        }
+        private static bool IsRunAsAdmin()
+        {
+            WindowsIdentity id = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(id);
+
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

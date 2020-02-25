@@ -26,16 +26,10 @@ namespace Ducky_IDE
         public static void Build(string duckycode, string keyboard = "us", bool cpp = false)
         {
             frun();
-            if (code == duckycode)
-            {
-                build = false;
-                return;
-            }
-            code = duckycode;
+            buildProsses.DuckyCode = duckycode;
+            inject = buildProsses.InjectBin;
             if (cpp)
                 buildProsses.InjectCode = duckycode;
-            buildProsses.DuckyCode = code;
-            inject = buildProsses.InjectBin;
             prog = buildProsses.RawBinary;
             build = true;
         }

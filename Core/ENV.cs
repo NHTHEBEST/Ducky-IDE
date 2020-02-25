@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-
+using System.IO.Compression;
 namespace Core
 {
     static class ENV
@@ -38,28 +38,7 @@ namespace Core
 
         static void UnzipFile(string zipPath, string folderPath)
         {
-            try
-            {
-                if (!File.Exists(zipPath))
-                {
-                    throw new FileNotFoundException();
-                }
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                Shell32.Shell objShell = new Shell32.Shell();
-                Shell32.Folder destinationFolder = objShell.NameSpace(folderPath);
-                Shell32.Folder sourceFile = objShell.NameSpace(zipPath);
-                foreach (var file in sourceFile.Items())
-                {
-                    destinationFolder.CopyHere(file, 4 | 16);
-                }
-            }
-            catch (Exception e)
-            {
-                //handle error
-            }
+            ZipFile.ExtractToDirectory(zipPath, folderPath);
         }
     }
 }
