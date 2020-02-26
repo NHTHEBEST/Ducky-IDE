@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace UI_components
 {
@@ -14,6 +15,8 @@ namespace UI_components
     {
 
         FastColoredTextBoxNS.AutocompleteMenu autocompleteMenu;
+        string defaulttext = "REM NHTHEBEST DUCKY IDE";
+        bool saved = true;
         public Ducky_Script_Code_Box()
         {
             InitializeComponent();
@@ -28,9 +31,11 @@ namespace UI_components
             fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.Custom;
             fastColoredTextBox1.AutoIndent = false;
             fastColoredTextBox1.AutoIndentChars = false;
-            fastColoredTextBox1.Text = "REM NHTHEBEST DUCKY IDE";
+            fastColoredTextBox1.Text = defaulttext;
             fastColoredTextBox1.DescriptionFile = "Ducky.xml";
 
+            fastColoredTextBox1.KeyDown += FastColoredTextBox1_KeyDown;
+            fastColoredTextBox1.TextChanged += FastColoredTextBox1_TextChanged;
 
 
             string[] keywords =
@@ -55,6 +60,55 @@ namespace UI_components
 
             fastColoredTextBox1.Update();
             fastColoredTextBox1.OnKeyPressed('\n');
+        }
+
+        private void FastColoredTextBox1_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
+        {
+            saved = false;
+        }
+        Stream FileLocation;
+        private void FastColoredTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)       // Ctrl-S Save
+            {
+                try
+                {
+                    // Do what you want here
+                    if(FileLocation == null)
+                    {
+                        SaveFileDialog file = new SaveFileDialog();
+                        file.Filter = "Text Files | *.txt";
+                        file.ShowDialog();
+                        FileLocation = file.OpenFile();
+                        
+                    }
+                    StreamWriter streamWriter = new StreamWriter(FileLocation);
+                    streamWriter.Write(fastColoredTextBox1.Text);
+                    streamWriter.Flush();
+                    saved = true;
+                }
+                catch { }
+            }
+            else if (e.Control && e.KeyCode == Keys.O)
+            {
+                try
+                {
+                    if(!saved)
+                    {
+                        DialogResult res = MessageBox.Show("File Not Saved","Continue",MessageBoxButtons.OKCancel);
+                        if (res != DialogResult.OK)
+                            throw new Exception("NO");
+                    }
+                    OpenFileDialog file = new OpenFileDialog();
+                    file.Filter = "Text Files | *.txt";
+                    file.ShowDialog();
+                    FileLocation = file.OpenFile();
+                    var x = new StreamReader(FileLocation);
+                    fastColoredTextBox1.Text = x.ReadToEnd();
+                    saved = true;
+                }
+                catch { }
+            }
         }
 
         public string Text

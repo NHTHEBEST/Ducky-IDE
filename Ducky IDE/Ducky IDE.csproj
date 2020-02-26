@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dep Version.cs" />
     <Compile Include="Ducky IDE.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -15,7 +15,7 @@ namespace Ducky_IDE
         Thread thread;
         string ducky = "";
         string cpp = "";
-        public Ducky_IDE()
+        public Ducky_IDE(string file)
         {
             InitializeComponent();
             ducky_Script_Code_Box1.SendToBack();
@@ -27,7 +27,13 @@ namespace Ducky_IDE
             metroSetLabel1.BringToFront();
             metroSetButton2.BringToFront();
             metroSetButton1.BringToFront();
+
+            if (File.Exists(file))
+                ducky_Script_Code_Box1.Text = File.ReadAllText(file);
+
         }
+
+
 
         private void Ducky_IDE_FormClosed(object sender, FormClosedEventArgs e)
         {

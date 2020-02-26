@@ -12,15 +12,17 @@ using System.IO.Compression;
 
 namespace Ducky_IDE
 {
-    static class Program
+    static partial class Program
     {
         [STAThread]
-        static void StartForm()
+        static void StartForm(string filetoopen)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ducky_IDE());
+            Application.Run(new Ducky_IDE(filetoopen));
         }
+        
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -43,14 +45,14 @@ namespace Ducky_IDE
                 string installer = Path.Combine(data, "Install Drivers.exe");
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/Digistump.Drivers.zip", zip);
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + Drivers.ToString() + "/Digistump.Drivers.zip", zip);
                 }
                 ZipFile.ExtractToDirectory(zip, temp);
                 Process driverinstaller = Process.Start(installer);
                 driverinstaller.WaitForExit();
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/libusb0.dll", "libusb0.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + Drivers.ToString() + "/libusb0.dll", "libusb0.dll");
                 }
                 return;
             }
@@ -65,7 +67,7 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading Core.dll"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/Core.dll", "Core.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + Core.ToString() + "/Core.dll", "Core.dll");
                 }
             }
             if (!File.Exists("Ducky.xml"))
@@ -74,7 +76,7 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading Ducky.xml"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/Ducky.xml", "Ducky.xml");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + Ducky_XML.ToString() + "/Ducky.xml", "Ducky.xml");
                 }
             }
             if (!File.Exists("FastColoredTextBox.dll"))
@@ -83,7 +85,7 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading FastColoredTextBox.dll"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/FastColoredTextBox.dll", "FastColoredTextBox.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + FastColoredTextBox.ToString() + "/FastColoredTextBox.dll", "FastColoredTextBox.dll");
                 }
             }
             if (!File.Exists("Flasher.dll"))
@@ -92,7 +94,7 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading Flasher.dll"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/Flasher.dll", "Flasher.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + Flasher.ToString() + "/Flasher.dll", "Flasher.dll");
                 }
             }
             if (!File.Exists("UI components.dll"))
@@ -101,7 +103,7 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading UI components.dll"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/UI_components.dll", "UI components.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/" + UI_components.ToString() + "/UI_components.dll", "UI components.dll");
                 }
             }
             if (!File.Exists("MetroSet UI.dll"))
@@ -110,11 +112,15 @@ namespace Ducky_IDE
                 new Thread(() => MessageBox.Show("Downloading MetroSet UI.dll"));
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("http://api.nhthebest.com/duckyide/MetroSet_UI.dll", "MetroSet UI.dll");
+                    client.DownloadFile("https://api.nhthebest.com/duckyide/"+MetroSet_UI.ToString()+"/MetroSet_UI.dll", "MetroSet UI.dll");
                 }
             }
+            string file = "";
+            foreach (string x in args)
+                if(File.Exists(x))
+                    file = x;
 
-            Thread thread = new Thread(StartForm);
+            Thread thread = new Thread(() => StartForm(file));
             thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
             thread.Start();
             
